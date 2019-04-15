@@ -6,22 +6,25 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
   constructor(private _http: HttpClient) {
-    this.getPokemonBulbasaur();
+    this.getBulbasaur();
+    this.getNumber();
+    //passing url
   }
- getPokemonBulbasaur(){
+ getBulbasaur(){
    let bulbasaur = this._http.get('https://pokeapi.co/api/v2/pokemon/1/');
-   //
-   bulbasaur.subscribe(data => {
-   console.log(data.name + "'s" + data.abilities[0].ability.name + 'and' + data.abilities[1].ability.name + '.')
-   this.getNumber(data.abilities[1].ability.url);
+   //data:any // any method for vague generalization - general API calls
+   bulbasaur.subscribe((data:any) => {
+   //ES6 Angular Syntax ${} data
+   console.log(`${data.name}'s ${data.abilities[0].ability.name} and ${data.abilities[1].ability.name} .`);
  });
 };
 
-getNumber(url) {
-  let overgrow = this._http.get(url);
-  //
-  overgrow.subscribe(data => {
-    console.log(data.pokemon.length + 'Pokemon have the' + data.name + 'ability');
+getNumber() {
+  let overgrow = this._http.get('https://pokeapi.co/api/v2/ability/65');
+  //Target new url => specific ability
+  overgrow.subscribe((data:any) => {
+    console.log(`${data.pokemon.length} Pokemon have the ${data.name} ability `);
+    //Target pokemon w/ same abilities in url
   });
 };
 
