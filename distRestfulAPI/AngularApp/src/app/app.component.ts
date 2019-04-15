@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RestfulService } from './restful.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'myFirstAngularApp';
+  title = 'MEAN';
+
+  constructor(private _restfulService: RestfulService){}
 }

@@ -3,30 +3,25 @@ var session = require('express-session');
 var User = mongoose.model('User');
 var users = require('../controller/tasks.js');
 
-
 module.exports = function (app) {
 
-app.get('/', function (req, res) {
-  if(session.user === undefined){
-    res.render('login', {errors: session.errors});
-  }
-  else{
-      res.render('index', {user: session.user});
-  }
+app.get('/tasks', function(req,res){
+ tasks.tasks(req, res);
 });
 
-app.post('/register', function(req, res){
-  users.register(req, res);
-  });
-
-app.post('/login', function(req, res){
-  users.login(req, res);
+app.get('/tasks/:id', function(req, res){
+  tasks.tasksid(req, res);
 });
 
-app.get('/logout', function (req, res) {
-  session.user = undefined;
-  res.redirect('/');
+app.post('/tasks', function (req, res) {
+ tasks.postTask(req, res);
 });
-};
 
+app.put('/tasks/:id', function(req, res){
+  tasks.postTaskid(req, res);
+});
+
+app.delete('/tasks/:id', function(req, res){
+  tasks.deleteTaskid(req, res);
+});
 };
