@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RestfulService } from './restful.service';
-import { RestfulClientModule } from '@angular/common/http';
+import { HttpService } from './http.service';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -12,9 +13,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RestfulClientModule,
+    HttpClientModule,
   ],
-  providers: [ResfulService],
+  providers: [HttpService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

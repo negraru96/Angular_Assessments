@@ -12,3 +12,6 @@ export class AppComponent {
   constructor(private _httpService: HttpService){
   }
 }
+
+
+// after constructor method -- ngOnInit method -- starts on init
