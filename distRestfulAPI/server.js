@@ -10,22 +10,23 @@ app.use(express.static( __dirname + '/AngularApp/dist' ));
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
-// require('./server/config/mongoose.js');
 mongoose.connect('mongodb://localhost/RestfulAPI');
 
 var TaskSchema = new mongoose.Schema({
-  title: {type: String, required: true, minlength: 3, maxlength: 64 },
-  description: {type: String, required: true, minlength: 3, maxlength: 300 },
-  completed: {type: Boolean, required: true},
+  _id: { type: mongoose.SchemaTypes.ObjectId, required: true },
+  title: {type: String, default: "" },
+  description: {type: String, default: "" },
+  completed: {type: Boolean, default: false },
 }, { timestamps: true });
 mongoose.model('Task', TaskSchema);
 var Task = mongoose.model('Task');
 
 app.get('/tasks', function(req,res){
     Task.find({}, function(err, tasks){
+      console.log(req.body);
       if(err){
         console.log('Returned error', err);
-        res.json({message: 'Error', err: err});
+          res.json({message: 'Error finding task', err: err});
       }
       else {
         res.json({message: 'Success', tasks: tasks});
@@ -35,25 +36,25 @@ app.get('/tasks', function(req,res){
 
 app.get('/tasks/:id', function(req, res){
   console.log(req.params.id);
-  var id = (req.params.id);
-  Task.find({_id: id}, function(err, tasks) {
+  var id = req.params.id;
+  Task.findOne({_id: id}, function(err, task) {
     if(err){
       console.log('Returned error', err);
       res.json({message: 'Error displaying task', err: err});
     }
     else {
-      res.json({message: 'Success', tasks: tasks});
+      res.json({message: 'Success', task: task});
     }
 });
 });
 
 app.post('/tasks', function (req, res) {
-  console.log('POST DATA', req.body);
-  var newTask = new Task({
+  Task.create({
       title: req.body.title,
       description: req.body.description,
-    });
-  newTask.save(function (err, tasks) {
+      completed: req.body.completed,
+    },
+  function (err, tasks) {
     if (err) {
       console.log('something went wrong');
       res.json({message: 'Error', err: err});
@@ -88,7 +89,6 @@ app.put('/tasks/:id', function(req, res){
     }
   });
 });
-
 
 app.delete('/tasks/:id', function(req, res){
   var id = req.params.id;
