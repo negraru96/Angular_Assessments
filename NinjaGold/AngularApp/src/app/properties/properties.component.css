@@ -1,0 +1,62 @@
+.farm {
+  display: inline-block;
+  position: absolute;
+  border: solid 1px;
+  background-color: black;
+  height: 180px;
+  width: 250px;
+  text-align: center;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+.cave {
+  display: inline-block;
+  border: solid 1px;
+  background-color: black;
+  height: 180px;
+  width: 250px;
+  text-align: center;
+  margin-left: 310px;
+}
+.house {
+  display: inline-block;
+  border: solid 1px;
+  background-color: black;
+  height: 180px;
+  width: 250px;
+  text-align: center;
+  margin-left: 50px;
+}
+.casino {
+  position: absolute;
+  display: inline-block;
+  border: solid 1px;
+  background-color: black;
+  height: 180px;
+  width: 250px;
+  text-align: center;
+  margin-left: 50px;
+}
+.title {
+  color: white;
+}
+button {
+ background-color: #ffcc00;
+ border-color: #ffcc00;
+ border-radius: 5px;
+ margin-top: 20px;
+ font-size: 15px;
+}
+#cbutton {
+  position: absolute;
+  display: inline-block;
+  margin-left: -70px;
+  top: 95px;
+}
+.goldnum{
+  color: white;
+  font-size: 15px;
+}
+.row{
+  margin-left: 60px;
+}

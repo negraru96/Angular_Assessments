@@ -1,0 +1,11 @@
+.activity {
+  margin-top: 50px;
+  height: 500px;
+  width: 1438px;
+  overflow: scroll;
+  text-align: center;
+}
+.words{
+margin-top: 10px;
+font-size: 25px;
+}
