@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-display',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayComponent implements OnInit {
 
-  constructor() { }
+  display: string[] = this._httpService.display
+  constructor(private _httpService: HttpService) { }
 
   ngOnInit() {
   }
